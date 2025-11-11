@@ -1,10 +1,16 @@
-import React from "react";
+import { FC } from "react";
+import { PaymentMethod } from "@/types";
 
-const Display = () => {
+interface DisplayProps {
+  paymentMethod: PaymentMethod;
+  balance: number;
+}
+
+const Display: FC<DisplayProps> = ({ paymentMethod, balance }) => {
   return (
     <div>
-      <div>display</div>
-      Display
+      <span>결제 수단: {paymentMethod === "card" ? "카드" : "현금"}</span>
+      <span>잔액: {balance}원</span>
     </div>
   );
 };

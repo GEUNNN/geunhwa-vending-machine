@@ -2,8 +2,11 @@
 import Item from "@/components/Item";
 import Display from "@/components/panels/Display";
 import Control from "@/components/panels/Control";
+import { useVendingMachine } from "@/hook/useVendingMachine";
 
 export default function Home() {
+  const { message, paymentMethod, balance } = useVendingMachine();
+
   return (
     <div>
       <main>
@@ -15,7 +18,11 @@ export default function Home() {
           </div>
 
           <div>
-            <Display />
+            <Display
+              message={message}
+              paymentMethod={paymentMethod}
+              balance={balance}
+            />
             <Control />
           </div>
         </div>
