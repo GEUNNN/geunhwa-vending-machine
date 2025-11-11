@@ -1,12 +1,21 @@
 import { FC } from "react";
-import { AVAILABLE_CASH_AMOUNTS } from "@/constants";
+import { AVAILABLE_CASH_AMOUNTS, PAYMENT_METHOD } from "@/constants";
+import { PaymentMethod } from "@/types";
 
-const Control: FC = () => {
+interface ControlProps {
+  handlePaymentMethodChange: (method: PaymentMethod) => void;
+}
+
+const Control: FC<ControlProps> = ({ handlePaymentMethodChange }) => {
   return (
     <div>
       <div>
-        <button onClick={() => console.log("현금")}>현금</button>
-        <button onClick={() => console.log("카드")}>카드</button>
+        <button onClick={() => handlePaymentMethodChange(PAYMENT_METHOD.CASH)}>
+          현금
+        </button>
+        <button onClick={() => handlePaymentMethodChange(PAYMENT_METHOD.CARD)}>
+          카드
+        </button>
       </div>
       <div>
         {AVAILABLE_CASH_AMOUNTS.map((amount) => (

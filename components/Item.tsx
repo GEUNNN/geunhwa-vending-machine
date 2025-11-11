@@ -1,10 +1,21 @@
-import React from "react";
+import { Drink } from "@/types";
+import { FC } from "react";
 
-const Item = () => {
+interface ItemProps {
+  drink: Drink;
+  handleSelectDrink: (drinkId: number) => void;
+}
+
+const Item: FC<ItemProps> = ({ drink, handleSelectDrink }) => {
+  const isSoldOut = drink.stock === 0;
+
   return (
     <div>
-      <div>Item</div>
-      Item
+      <span>{drink.name}</span>
+      <span>{drink.price.toLocaleString()}원</span>
+      <button disabled={isSoldOut} onClick={() => handleSelectDrink(drink.id)}>
+        {isSoldOut ? "매진" : `${drink.stock}개 남음`}
+      </button>
     </div>
   );
 };

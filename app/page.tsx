@@ -5,7 +5,14 @@ import Control from "@/components/panels/Control";
 import { useVendingMachine } from "@/hook/useVendingMachine";
 
 export default function Home() {
-  const { message, paymentMethod, balance } = useVendingMachine();
+  const {
+    drinks,
+    message,
+    paymentMethod,
+    balance,
+    handlePaymentMethodChange,
+    handleSelectDrink,
+  } = useVendingMachine();
 
   return (
     <div>
@@ -14,7 +21,13 @@ export default function Home() {
           <h1>음료 자판기</h1>
 
           <div>
-            <Item />
+            {drinks.map((drink) => (
+              <Item
+                key={drink.id}
+                drink={drink}
+                handleSelectDrink={handleSelectDrink}
+              />
+            ))}
           </div>
 
           <div>
@@ -23,7 +36,7 @@ export default function Home() {
               paymentMethod={paymentMethod}
               balance={balance}
             />
-            <Control />
+            <Control handlePaymentMethodChange={handlePaymentMethodChange} />
           </div>
         </div>
       </main>
