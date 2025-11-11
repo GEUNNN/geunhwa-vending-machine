@@ -27,12 +27,31 @@ export const useVendingMachine = () => {
   };
 
   const handleSelectDrink = (drinkId: number) => {
-    const drink = drinks.find((d) => d.id === drinkId) || null;
+    const drink = drinks.find((d) => d.id === drinkId);
+    if (!drink) return;
+
+    if (drink.stock === 0) {
+      setMessage(MESSAGES.OUT_OF_STOCK);
+      setSelected(null);
+      return;
+    }
+
     setSelected(drink);
+    setMessage(`${drink.name} 선택. 가격: ${drink.price.toLocaleString()}원`);
   };
 
-  const handleSelectAmount = (amount: number) => {
+  const handleInsertCash = (amount: number) => {
+    if (paymentMethod !== PAYMENT_METHOD.CASH) {
+      setMessage(MESSAGES.CARD_MODE);
+      return;
+    }
+
     setBalance((prev) => prev + amount);
+    setMessage(
+      `${amount}원 투입. 투입한 총 금액: ${(
+        balance + amount
+      ).toLocaleString()}원`
+    );
   };
 
   return {
@@ -42,7 +61,7 @@ export const useVendingMachine = () => {
     setSelected,
     handlePaymentMethodChange,
     handleSelectDrink,
-    handleSelectAmount,
+    handleInsertCash,
     balance,
   };
 };

@@ -13,7 +13,7 @@ const Item: FC<ItemProps> = ({ drink, handleSelectDrink }) => {
     <div>
       <span>{drink.name}</span>
       <span>{drink.price.toLocaleString()}원</span>
-      <button disabled={isSoldOut} onClick={() => handleSelectDrink(drink.id)}>
+      <button onClick={() => handleSelectDrink(drink.id)}>
         {isSoldOut ? "매진" : `${drink.stock}개 남음`}
       </button>
     </div>

@@ -18,4 +18,7 @@ export const AVAILABLE_CASH_AMOUNTS = [100, 500, 1000, 5000, 10000];
 
 export const MESSAGES = {
   WELCOME: "환영합니다!",
+  CARD_MODE: "카드 결제 모드입니다.",
+  CASH_MODE: "현금 결제 모드입니다.",
+  OUT_OF_STOCK: "선택하신 음료는 품절입니다.",
 };
