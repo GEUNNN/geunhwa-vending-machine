@@ -1,4 +1,5 @@
 import { FC } from "react";
+import { AVAILABLE_CASH_AMOUNTS } from "@/constants";
 
 const Control: FC = () => {
   return (
@@ -8,7 +9,7 @@ const Control: FC = () => {
         <button onClick={() => console.log("카드")}>카드</button>
       </div>
       <div>
-        {[100, 500, 1000, 5000, 10000].map((amount) => (
+        {AVAILABLE_CASH_AMOUNTS.map((amount) => (
           <button key={amount} onClick={() => console.log(`${amount}원`)}>
             {amount}원
           </button>
