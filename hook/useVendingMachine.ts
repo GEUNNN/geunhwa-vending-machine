@@ -31,6 +31,10 @@ export const useVendingMachine = () => {
     setSelected(drink);
   };
 
+  const handleSelectAmount = (amount: number) => {
+    setBalance((prev) => prev + amount);
+  };
+
   return {
     drinks,
     message,
@@ -38,6 +42,7 @@ export const useVendingMachine = () => {
     setSelected,
     handlePaymentMethodChange,
     handleSelectDrink,
+    handleSelectAmount,
     balance,
   };
 };

@@ -12,6 +12,7 @@ export default function Home() {
     balance,
     handlePaymentMethodChange,
     handleSelectDrink,
+    handleSelectAmount,
   } = useVendingMachine();
 
   return (
@@ -36,7 +37,10 @@ export default function Home() {
               paymentMethod={paymentMethod}
               balance={balance}
             />
-            <Control handlePaymentMethodChange={handlePaymentMethodChange} />
+            <Control
+              handlePaymentMethodChange={handlePaymentMethodChange}
+              handleSelectAmount={handleSelectAmount}
+            />
           </div>
         </div>
       </main>

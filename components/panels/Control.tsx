@@ -4,9 +4,13 @@ import { PaymentMethod } from "@/types";
 
 interface ControlProps {
   handlePaymentMethodChange: (method: PaymentMethod) => void;
+  handleSelectAmount: (amount: number) => void;
 }
 
-const Control: FC<ControlProps> = ({ handlePaymentMethodChange }) => {
+const Control: FC<ControlProps> = ({
+  handlePaymentMethodChange,
+  handleSelectAmount,
+}) => {
   return (
     <div>
       <div>
@@ -19,7 +23,7 @@ const Control: FC<ControlProps> = ({ handlePaymentMethodChange }) => {
       </div>
       <div>
         {AVAILABLE_CASH_AMOUNTS.map((amount) => (
-          <button key={amount} onClick={() => console.log(`${amount}원`)}>
+          <button key={amount} onClick={() => handleSelectAmount(amount)}>
             {amount}원
           </button>
         ))}
