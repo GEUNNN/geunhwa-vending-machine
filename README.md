@@ -1,36 +1,74 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 자판기 구현 과제
 
-## Getting Started
+## 실행 방법
 
-First, run the development server:
+1. 해당 프로젝트를 clone한 후 프로젝트 폴더로 이동
+2. 프로젝트에 필요한 패키지(의존성) 설치
+
+```bash
+npm install
+# 또는
+yarn install
+```
+
+3. 개발 서버를 실행
 
 ```bash
 npm run dev
-# or
+# 또는
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+4. 브라우저에서 `http://localhost:3000` 주소 입력 후 결과물 확인
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 사용된 버전
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- React: 19.2.0
+- Typescript: ^5
+- Next.js: 16.0.1
+- TailwindCSS: ^4
 
-## Learn More
+## 작업 중 참고한 리소스 및 도구
 
-To learn more about Next.js, take a look at the following resources:
+- 순서도
+  - [순서도 파악](https://blog.naver.com/ycpiglet/222113989214)
+  - [기본 기호 참고](https://wscode.tistory.com/98)
+- 자판기 파악
+  - [배경지식](https://namu.wiki/w/%EC%9E%90%EB%8F%99%ED%8C%90%EB%A7%A4%EA%B8%B0)
+  - 동작 방식: vending machine operation process 로 검색
+- AI
+  - 도식에 대한 설명을 통해 순서도 파악
+  - 아래 4가지 예외 상황 이외에 추가 케이스 확인 후 거스름돈 부족 케이스 추가
+    1. 재고 없음
+    2. 자판기에 넣은 현금이 제품 가격보다 낮음
+    3. 카드 인식 안됨
+    4. 카드 잔액 부족
+    5. 거스름돈 부족 (해당 케이스 추가)
+  - 스타일링 구현
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 폴더 구조
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```bash
+vending-machine/
+├── app/
+│ ├── page.tsx # 메인 자판기 UI 페이지
+│ ├── layout.tsx
+│ └── globals.css
+├── components/
+│ ├── Item.tsx # 개별 음료 아이템 UI
+│ └── panels/
+│ ├── Control.tsx # 버튼 제어 UI
+│ └── Display.tsx # 디스플레이 UI
+├── constants/
+│ └── index.ts # 상수값
+├── hooks/
+│ └── useVendingMachine.ts # 자판기 로직 및 상태
+├── types/
+│ └── index.ts # 타입
+├── util/
+│ └── index.ts # 헬퍼 함수
+├── public/
+│ └── ...
+├── package.json
+└── tsconfig.json
+```

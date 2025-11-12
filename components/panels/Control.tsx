@@ -60,7 +60,7 @@ const Control: FC<ControlProps> = ({
                 isCashDisabled && "cursor-not-allowed opacity-50"
               )}
             >
-              {amount}c
+              {amount}
             </button>
           ))}
         </div>
