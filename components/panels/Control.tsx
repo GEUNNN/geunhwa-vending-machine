@@ -6,12 +6,14 @@ interface ControlProps {
   handlePaymentMethodChange: (method: PaymentMethod) => void;
   handleSelectAmount: (amount: number) => void;
   handleReturnChange: () => void;
+  handlePurchase: () => void;
 }
 
 const Control: FC<ControlProps> = ({
   handlePaymentMethodChange,
   handleSelectAmount,
   handleReturnChange,
+  handlePurchase,
 }) => {
   return (
     <div>
@@ -32,7 +34,7 @@ const Control: FC<ControlProps> = ({
       </div>
       <div>
         <button onClick={handleReturnChange}>반환</button>
-        <button onClick={() => console.log("구매")}>구매</button>
+        <button onClick={handlePurchase}>구매</button>
       </div>
     </div>
   );
