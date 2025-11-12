@@ -27,7 +27,6 @@ export const useVendingMachine = () => {
 
   // 결제 수단 선택 로직
   const handlePaymentMethodChange = (method: PaymentMethod) => {
-    console.log(method);
     if (balance > 0 && method === PAYMENT_METHOD.CARD) {
       setMessage(MESSAGES.NO_SWITCH_CASH);
       return;
@@ -153,7 +152,6 @@ export const useVendingMachine = () => {
     balance,
     paymentMethod,
     selected,
-    setSelected,
     handlePaymentMethodChange,
     handleSelectDrink,
     handleInsertCash,
