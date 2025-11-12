@@ -22,10 +22,17 @@ export const useVendingMachine = () => {
     setDrinks(drinksWithStock);
   }, []);
 
+  // 결제 수단 선택 로직
   const handlePaymentMethodChange = (method: PaymentMethod) => {
+    console.log(method);
+    if (balance > 0 && method === PAYMENT_METHOD.CARD) {
+      setMessage("현금 투입 중엔 불가합니다. 먼저 반환해주세요.");
+      return;
+    }
     setPaymentMethod(method);
   };
 
+  // 음료 선택 로직
   const handleSelectDrink = (drinkId: number) => {
     const drink = drinks.find((d) => d.id === drinkId);
     if (!drink) return;
@@ -40,6 +47,7 @@ export const useVendingMachine = () => {
     setMessage(`${drink.name} 선택. 가격: ${drink.price.toLocaleString()}원`);
   };
 
+  // 현금 투입 로직
   const handleInsertCash = (amount: number) => {
     if (paymentMethod !== PAYMENT_METHOD.CASH) {
       setMessage(MESSAGES.CARD_MODE);
@@ -54,6 +62,18 @@ export const useVendingMachine = () => {
     );
   };
 
+  // 반환 로직
+  const handleReturnChange = () => {
+    if (balance === 0) {
+      setMessage(MESSAGES.NO_BALANCE);
+      return;
+    }
+
+    setMessage(`투입금액 ${balance.toLocaleString()}원 반환`);
+    setBalance(0);
+    setSelected(null);
+  };
+
   return {
     drinks,
     message,
@@ -62,6 +82,7 @@ export const useVendingMachine = () => {
     handlePaymentMethodChange,
     handleSelectDrink,
     handleInsertCash,
+    handleReturnChange,
     balance,
   };
 };

@@ -5,11 +5,13 @@ import { PaymentMethod } from "@/types";
 interface ControlProps {
   handlePaymentMethodChange: (method: PaymentMethod) => void;
   handleSelectAmount: (amount: number) => void;
+  handleReturnChange: () => void;
 }
 
 const Control: FC<ControlProps> = ({
   handlePaymentMethodChange,
   handleSelectAmount,
+  handleReturnChange,
 }) => {
   return (
     <div>
@@ -29,7 +31,7 @@ const Control: FC<ControlProps> = ({
         ))}
       </div>
       <div>
-        <button onClick={() => console.log("반환")}>반환</button>
+        <button onClick={handleReturnChange}>반환</button>
         <button onClick={() => console.log("구매")}>구매</button>
       </div>
     </div>
